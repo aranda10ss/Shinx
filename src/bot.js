@@ -3,8 +3,6 @@ import { promises as fsPromises } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 
-import 'dotenv/config'
-
 const { readdir, stat } = fsPromises
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
