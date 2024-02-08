@@ -54,6 +54,23 @@ export class Bot extends Client {
     return JSFiles
   }
 
+  async loadCommands (client, path) {
+    const commandFiles = await this.findJSFiles(path)
+
+    commandFiles.forEach(async (file) => {
+      const command = await import(file)
+      const commandName = command.default.name
+
+      client.commands.set(commandName, command)
+
+      if (command.aliases && Array.isArray(command.aliases)) {
+        command.aliases.forEach(alias => {
+          client.aliases.set(alias, commandName)
+        })
+      }
+    })
+  }
+
   async loadEvents (client, path) {
     const eventFiles = await this.findJSFiles(path)
 
@@ -66,6 +83,7 @@ export class Bot extends Client {
   }
 
   async start (token) {
+    this.loadCommands(this, join(__dirname, 'commands'))
     this.loadEvents(this, join(__dirname, 'events'))
     await this.login(token)
   }
