@@ -1,4 +1,4 @@
-import { EmbedBuilder } from 'discord.js'
+import { sendEmbedMessage } from '../utils/embeds.js'
 
 export default {
   name: 'channel',
@@ -16,26 +16,12 @@ export default {
     })
 
     if (server?.channelId === channelId) {
-      return message.reply({
-        embeds: [
-          new EmbedBuilder()
-            .setAuthor({ name: message.author.globalName, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 512 }) })
-            .setDescription(client.languages.__mf('channelCommand.alreadySet', { channel: server.channelId }))
-            .setColor('#FF0000')
-        ]
-      })
+      return sendEmbedMessage(message, client.languages.__mf('channelCommand.alreadySet', { channel: server.channelId }), '#FF0000')
     }
 
     const channel = message.guild.channels.cache.get(channelId)
     if (!channel) {
-      return message.reply({
-        embeds: [
-          new EmbedBuilder()
-            .setAuthor({ name: message.author.globalName, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 512 }) })
-            .setDescription(client.languages.__mf('channelCommand.invalidChannel'))
-            .setColor('#FF0000')
-        ]
-      })
+      return sendEmbedMessage(message, client.languages.__mf('channelCommand.invalidChannel'), '#FF0000')
     }
 
     await client.prisma.server.upsert({
@@ -44,13 +30,6 @@ export default {
       create: { guildId: message.guild.id, channelId }
     })
 
-    message.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setAuthor({ name: message.author.globalName, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 512 }) })
-          .setDescription(client.languages.__mf('channelCommand.success', { channel: channel.id }))
-          .setColor('#FF0000')
-      ]
-    })
+    return sendEmbedMessage(message, client.languages.__mf('channelCommand.success', { channel: channel.id }), '#FF0000')
   }
 }

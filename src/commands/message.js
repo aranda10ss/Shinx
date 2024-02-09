@@ -1,4 +1,4 @@
-import { EmbedBuilder } from 'discord.js'
+import { sendEmbedMessage } from '../utils/embeds.js'
 
 export default {
   name: 'message',
@@ -13,13 +13,6 @@ export default {
       create: { guildId: message.guild.id, welcomeMessage }
     })
 
-    message.reply({
-      embeds: [
-        new EmbedBuilder()
-          .setAuthor({ name: message.author.globalName, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 512 }) })
-          .setDescription(client.languages.__mf('messageCommand'))
-          .setColor('#FF0000')
-      ]
-    })
+    await sendEmbedMessage(message, client.languages.__mf('messageCommand'), '#FF0000')
   }
 }
