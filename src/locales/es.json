@@ -1,5 +1,5 @@
 {
-  "invalidCommand": "Ese comando no existe.",
+  "error": "Acaba de ocurrir un error inesperado",
   "args": "Debes proporcionar los argumentos.",
   "messageCommand": "El mensaje de bienvenida se ha configurado correctamente.",
   "langCommand": {
