@@ -17,9 +17,11 @@ export default async (client, message) => {
   client.languages.setLocale(serverLanguage)
 
   const command = client.commands.get(commandName) || client.commands.find(cmd => cmd.default.aliases && cmd.default.aliases.includes(commandName))
-  try {
-    const { default: cmd } = command
+  if (!command) return
 
+  const { default: cmd } = command
+
+  try {
     const botPermissions = cmd.permissions.client || []
     const userPermissions = cmd.permissions.user || []
 
@@ -36,10 +38,9 @@ export default async (client, message) => {
     if (cmd.args && !args.length) {
       return sendEmbedMessage(message, client.languages.__mf('args'), '#FF0000')
     }
-
     cmd.execute({ message, args, client })
-  } catch (error) {
-    console.log(error)
-    return sendEmbedMessage(message, client.languages.__mf('invalidCommand'), '#FF0000')
+  } catch (err) {
+    sendEmbedMessage(message, client.languages.__mf('error'), '#FF0000')
+    console.error(err)
   }
 }
