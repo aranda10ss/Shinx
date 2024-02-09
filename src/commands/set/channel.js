@@ -1,6 +1,7 @@
 export default {
   name: 'channel',
   aliases: [],
+  args: true,
   async execute ({ message, args, client }) {
     let channelId = args[0]
     if (!args.length) {

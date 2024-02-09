@@ -7,5 +7,9 @@ export default async (client, message) => {
 
   const { default: cmd } = command
 
+  if (cmd.args && !args.length) {
+    return message.reply('You must provide the arguments.')
+  }
+
   cmd.execute({ message, args, client })
 }

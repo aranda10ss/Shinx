@@ -1,6 +1,7 @@
 export default {
   name: 'message',
   aliases: ['msg'],
+  args: true,
   async execute ({ message, args, client }) {
     if (!args.length) {
       return message.reply('You must provide the welcome message.')
