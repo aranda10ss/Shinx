@@ -10,5 +10,9 @@
     "alreadySet": "Channel <#{channel}> is already set as default.",
     "invalidChannel": "The channel is invalid.",
     "success": "The default channel is set to <#{channel}>."
+  },
+  "missingPermissions": {
+    "user": "You need the following permissions: {missingPermissions}",
+    "client": "The bot needs the following permissions: {missingPermissions}"
   }
 }

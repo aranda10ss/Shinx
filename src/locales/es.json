@@ -10,5 +10,9 @@
     "alreadySet": "El canal <#{channel}> ya está configurado como predeterminado.",
     "invalidChannel": "El canal no es válido.",
     "success": "El canal predeterminado está configurado en <#{channel}>."
+  },
+  "missingPermissions": {
+    "user": "Necesita los siguientes permisos: {missingPermissions}",
+    "client": "El bot necesita los siguientes permisos: {missingPermissions}"
   }
 }
