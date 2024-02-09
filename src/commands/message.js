@@ -1,3 +1,5 @@
+import { sendEmbedMessage } from '../utils/embeds.js'
+
 export default {
   name: 'message',
   aliases: ['msg'],
@@ -11,6 +13,6 @@ export default {
       create: { guildId: message.guild.id, welcomeMessage }
     })
 
-    message.reply({ content: client.languages.__mf('messageCommand')})
+    await sendEmbedMessage(message, client.languages.__mf('messageCommand'), '#008F39')
   }
 }

@@ -1,3 +1,5 @@
+import { sendEmbedMessage } from '../utils/embeds.js'
+
 export default {
   name: 'channel',
   aliases: [],
@@ -14,12 +16,12 @@ export default {
     })
 
     if (server?.channelId === channelId) {
-      return message.reply(client.languages.__mf('channelCommand.alreadySet', { channel: server.channelId }))
+      return sendEmbedMessage(message, client.languages.__mf('channelCommand.alreadySet', { channel: server.channelId }), '#FF0000')
     }
 
     const channel = message.guild.channels.cache.get(channelId)
     if (!channel) {
-      return message.reply(client.languages.__mf('channelCommand.invalidChannel'))
+      return sendEmbedMessage(message, client.languages.__mf('channelCommand.invalidChannel'), '#FF0000')
     }
 
     await client.prisma.server.upsert({
@@ -28,6 +30,6 @@ export default {
       create: { guildId: message.guild.id, channelId }
     })
 
-    message.reply(client.languages.__mf('channelCommand.success', { channel: channel.id }))
+    return sendEmbedMessage(message, client.languages.__mf('channelCommand.success', { channel: channel.id }), '#008F39')
   }
 }
