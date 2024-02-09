@@ -2,6 +2,7 @@ import { Client, GatewayIntentBits, Partials, AllowedMentionsTypes, Collection }
 import { promises as fsPromises } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
+import { PrismaClient } from '@prisma/client'
 
 const { readdir, stat } = fsPromises
 const __filename = fileURLToPath(import.meta.url)
@@ -23,7 +24,7 @@ export class Bot extends Client {
         repliedUser: false
       }
     })
-
+    this.prisma = new PrismaClient()
     this.prefix = process.env.PREFIX
     this.commands = new Collection()
     this.aliases = new Collection()
