@@ -1,0 +1,14 @@
+{
+  "invalidCommand": "That command does not exist.",
+  "args": "You must provide the arguments.",
+  "messageCommand": "The welcome message has been configured correctly.",
+  "langCommand": {
+    "invalidLanguage": "Please choose a valid language: `es` for Spanish or `en` for English.",
+    "success": "Se ha seleccionado el idioma {language}."
+  },
+  "channelCommand": {
+    "alreadySet": "Channel <#{channel}> is already set as default.",
+    "invalidChannel": "The channel is invalid.",
+    "success": "The default channel is set to <#{channel}>."
+  }
+}

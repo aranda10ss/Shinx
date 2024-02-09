@@ -1,0 +1,14 @@
+{
+  "invalidCommand": "Ese comando no existe.",
+  "args": "Debes proporcionar los argumentos.",
+  "messageCommand": "El mensaje de bienvenida se ha configurado correctamente.",
+  "langCommand": {
+    "invalidLanguage": "Por favor elija un idioma válido: `es` para español o `en` para inglés.",
+    "success": "The {language} language has been selected."
+  },
+  "channelCommand": {
+    "alreadySet": "El canal <#{channel}> ya está configurado como predeterminado.",
+    "invalidChannel": "El canal no es válido.",
+    "success": "El canal predeterminado está configurado en <#{channel}>."
+  }
+}

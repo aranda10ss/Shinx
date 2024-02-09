@@ -3,7 +3,7 @@ import { promises as fsPromises } from 'fs'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import { PrismaClient } from '@prisma/client'
-
+import i18n from 'i18n'
 const { readdir, stat } = fsPromises
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
@@ -24,10 +24,29 @@ export class Bot extends Client {
         repliedUser: false
       }
     })
-    this.prisma = new PrismaClient()
+
     this.prefix = process.env.PREFIX
+    this.prisma = new PrismaClient()
     this.commands = new Collection()
     this.aliases = new Collection()
+    this.languages = i18n
+    this.languages.configure({
+      locales: ['en', 'es'],
+      directory: join(__dirname, 'locales'),
+      defaultLocale: 'en',
+      retryInDefaultLocale: true,
+      objectNotation: true,
+      register: global,
+
+      missingKeyFn: function (locale, value) {
+        return value
+      },
+
+      mustacheConfig: {
+        tags: ['{{', '}}'],
+        disable: false
+      }
+    })
   }
 
   async findJSFiles (dir) {
