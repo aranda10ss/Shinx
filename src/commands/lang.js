@@ -1,3 +1,5 @@
+import { EmbedBuilder } from 'discord.js'
+
 export default {
   name: 'language',
   aliases: ['lang'],
@@ -7,7 +9,14 @@ export default {
     const selectedLanguage = args[0]
 
     if (!validLanguages.includes(selectedLanguage)) {
-      return message.reply(client.languages.__mf('langCommand.invalidLanguage'))
+      return message.reply({
+        embeds: [
+          new EmbedBuilder()
+            .setAuthor({ name: message.author.globalName, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 512 }) })
+            .setDescription(client.languages.__mf('langCommand.invalidLanguage'))
+            .setColor('#FF0000')
+        ]
+      })
     }
 
     await client.prisma.server.upsert({
@@ -21,6 +30,13 @@ export default {
       en: 'English'
     }
 
-    return message.reply(client.languages.__mf('langCommand.success', { language: languageNames[selectedLanguage] }))
+    message.reply({
+      embeds: [
+        new EmbedBuilder()
+          .setAuthor({ name: message.author.globalName, iconURL: message.author.displayAvatarURL({ dynamic: true, size: 512 }) })
+          .setDescription(client.languages.__mf('langCommand.success', { language: languageNames[selectedLanguage] }))
+          .setColor('#FF0000')
+      ]
+    })
   }
 }
