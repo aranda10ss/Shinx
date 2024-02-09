@@ -3,10 +3,6 @@ export default {
   aliases: ['msg'],
   args: true,
   async execute ({ message, args, client }) {
-    if (!args.length) {
-      return message.reply('You must provide the welcome message.')
-    }
-
     const welcomeMessage = args.join(' ')
 
     await client.prisma.server.upsert({
@@ -15,6 +11,6 @@ export default {
       create: { guildId: message.guild.id, welcomeMessage }
     })
 
-    message.reply('The welcome message has been configured correctly.')
+    message.reply({ content: client.languages.__mf('messageCommand')})
   }
 }

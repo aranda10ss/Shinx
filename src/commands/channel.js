@@ -4,9 +4,6 @@ export default {
   args: true,
   async execute ({ message, args, client }) {
     let channelId = args[0]
-    if (!args.length) {
-      return message.reply('You have to provide the ID or mention the channel.')
-    }
 
     if (message.mentions.channels.size > 0) {
       channelId = message.mentions.channels.first().id
@@ -17,12 +14,12 @@ export default {
     })
 
     if (server?.channelId === channelId) {
-      return message.reply(`Channel <#${channelId}> is already set as default.`)
+      return message.reply(client.languages.__mf('channelCommand.alreadySet', { channel: server.channelId }))
     }
 
     const channel = message.guild.channels.cache.get(channelId)
     if (!channel) {
-      return message.reply('The channel is invalid.')
+      return message.reply(client.languages.__mf('channelCommand.invalidChannel'))
     }
 
     await client.prisma.server.upsert({
@@ -31,6 +28,6 @@ export default {
       create: { guildId: message.guild.id, channelId }
     })
 
-    message.reply(`The default channel is set to <#${channelId}>.`)
+    message.reply(client.languages.__mf('channelCommand.success', { channel: channel.id }))
   }
 }
