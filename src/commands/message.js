@@ -13,6 +13,6 @@ export default {
       create: { guildId: message.guild.id, welcomeMessage }
     })
 
-    await sendEmbedMessage(message, client.languages.__mf('messageCommand'), '#FF0000')
+    await sendEmbedMessage(message, client.languages.__mf('messageCommand'), '#008F39')
   }
 }

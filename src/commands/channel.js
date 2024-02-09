@@ -30,6 +30,6 @@ export default {
       create: { guildId: message.guild.id, channelId }
     })
 
-    return sendEmbedMessage(message, client.languages.__mf('channelCommand.success', { channel: channel.id }), '#FF0000')
+    return sendEmbedMessage(message, client.languages.__mf('channelCommand.success', { channel: channel.id }), '#008F39')
   }
 }

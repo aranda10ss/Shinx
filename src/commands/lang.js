@@ -23,6 +23,6 @@ export default {
       en: 'English'
     }
 
-    return sendEmbedMessage(message, client.languages.__mf('langCommand.success', { language: languageNames[selectedLanguage] }), '#FF0000')
+    return sendEmbedMessage(message, client.languages.__mf('langCommand.success', { language: languageNames[selectedLanguage] }), '#008F39')
   }
 }
