@@ -18,6 +18,19 @@ export default async (client, message) => {
   try {
     const { default: cmd } = command
 
+    const botPermissions = cmd.permissions.client || []
+    const userPermissions = cmd.permissions.user || []
+
+    if (userPermissions.length > 0 && !message.channel.permissionsFor(message.member).has(userPermissions)) {
+      const missingPermissions = userPermissions.filter(permission => !message.channel.permissionsFor(message.member).has(permission))
+      return message.reply(client.languages.__mf('missingPermissions.user', { missingPermissions: missingPermissions.join(', ') }))
+    }
+
+    if (botPermissions.length > 0 && !message.channel.permissionsFor(client.user).has(botPermissions)) {
+      const missingPermissions = botPermissions.filter(permission => !message.channel.permissionsFor(client.user).has(permission))
+      return message.reply(client.languages.__mf('missingPermissions.client', { missingPermissions: missingPermissions.join(', ') }))
+    }
+
     if (cmd.args && !args.length) {
       return message.reply(client.languages.__mf('args'))
     }
