@@ -7,9 +7,16 @@ export default async (client, member) => {
     select: { welcomeMessage: true, channelId: true }
   })
 
-  if (server && server.welcomeMessage && server.channelId) {
+  if (server?.welcomeMessage && server?.channelId) {
     const { welcomeMessage, channelId } = server
     const channel = guild.channels.cache.get(channelId)
-    await channel.send(welcomeMessage)
+
+    const replacedMessage = welcomeMessage
+      .replace(/{members}/g, member.guild.memberCount)
+      .replace(/{serverName}/g, member.guild.name)
+      .replace(/{user}/g, member.user)
+      .replace(/{globalName}/g, member.user.globalName)
+
+    await channel.send(replacedMessage)
   }
 }
