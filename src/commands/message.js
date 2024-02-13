@@ -4,6 +4,10 @@ export default {
   name: 'message',
   aliases: ['msg'],
   args: true,
+  permissions: {
+    client: [],
+    user: []
+  },
   async execute ({ message, args, client }) {
     const welcomeMessage = args.join(' ')
 

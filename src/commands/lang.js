@@ -4,6 +4,10 @@ export default {
   name: 'language',
   aliases: ['lang'],
   args: true,
+  permissions: {
+    client: [],
+    user: []
+  },
   async execute ({ message, args, client }) {
     const validLanguages = ['es', 'en']
     const selectedLanguage = args[0]

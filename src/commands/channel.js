@@ -4,6 +4,10 @@ export default {
   name: 'channel',
   aliases: [],
   args: true,
+  permissions: {
+    client: [],
+    user: []
+  },
   async execute ({ message, args, client }) {
     let channelId = args[0]
 
