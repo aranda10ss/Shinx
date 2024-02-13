@@ -22,17 +22,29 @@ export default async (client, message) => {
   const { default: cmd } = command
 
   try {
-    const botPermissions = cmd.permissions.client || []
-    const userPermissions = cmd.permissions.user || []
-
-    if (userPermissions.length > 0 && !message.channel.permissionsFor(message.member).has(userPermissions)) {
-      const missingPermissions = userPermissions.filter(permission => !message.channel.permissionsFor(message.member).has(permission))
-      return sendEmbedMessage(message, client.languages.__mf('missingPermissions.user', { missingPermissions: missingPermissions.join(', ') }), '#FF0000')
+    const DEFAULT_PERMISSIONS = {
+      client: ['SendMessages'],
+      user: ['SendMessages']
     }
 
-    if (botPermissions.length > 0 && !message.channel.permissionsFor(client.user).has(botPermissions)) {
-      const missingPermissions = botPermissions.filter(permission => !message.channel.permissionsFor(client.user).has(permission))
-      return sendEmbedMessage(message, client.languages.__mf('missingPermissions.client', { missingPermissions: missingPermissions.join(', ') }), '#FF0000')
+    const { permissions = {} } = cmd
+    const botPermissions = [...DEFAULT_PERMISSIONS.client, ...permissions.client]
+    const userPermissions = [...DEFAULT_PERMISSIONS.user, ...permissions.user]
+
+    const checkPermissions = (permissionType, memberOrUser) => {
+      const missingPermissions = permissionType.filter(permission => !message.channel.permissionsFor(memberOrUser).has(permission))
+      return missingPermissions
+    }
+
+    const missingUserPermissions = checkPermissions(userPermissions, message.member)
+    const missingBotPermissions = checkPermissions(botPermissions, client.user)
+
+    if (missingUserPermissions.length > 0) {
+      return sendEmbedMessage(message, client.languages.__mf('missingPermissions.user', { missingPermissions: missingUserPermissions.join(', ') }), '#FF0000')
+    }
+
+    if (missingBotPermissions.length > 0) {
+      return sendEmbedMessage(message, client.languages.__mf('missingPermissions.client', { missingPermissions: missingBotPermissions.join(', ') }), '#FF0000')
     }
 
     if (cmd.args && !args.length) {
