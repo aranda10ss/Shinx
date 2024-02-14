@@ -1,3 +1,5 @@
+import replaceMessage from '../../utils/replaceMessages.js'
+
 export default async (client, member) => {
   const { guild } = member
   const guildId = guild.id
@@ -11,12 +13,6 @@ export default async (client, member) => {
     const { welcomeMessage, channelId } = server
     const channel = guild.channels.cache.get(channelId)
 
-    const replacedMessage = welcomeMessage
-      .replace(/{members}/g, member.guild.memberCount)
-      .replace(/{serverName}/g, member.guild.name)
-      .replace(/{user}/g, member.user)
-      .replace(/{globalName}/g, member.user.globalName)
-
-    await channel.send(replacedMessage)
+    await channel.send({ content: replaceMessage(welcomeMessage, member) })
   }
 }
