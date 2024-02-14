@@ -19,7 +19,7 @@ export async function findJSFiles (dir) {
           JSFiles.push(filePath)
         }
       }
-    } catch { }
+    } catch {}
   }
   await searchRecursively(dir)
   return JSFiles

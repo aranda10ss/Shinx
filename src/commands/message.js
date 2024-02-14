@@ -10,7 +10,9 @@ export default {
     user: []
   },
   async execute ({ message, args, client }) {
-    const gpt = await client.chatgpt.sendMessage(client.languages.__mf('prompt'))
+    const gpt = await client.chatgpt.sendMessage(
+      client.languages.__mf('prompt')
+    )
     const welcomeMessage = gpt.text
 
     await client.prisma.server.upsert({
@@ -19,6 +21,10 @@ export default {
       create: { guildId: message.guild.id, welcomeMessage }
     })
 
-    await sendEmbedMessage(message, replaceMessage(welcomeMessage, message), '#008F39')
+    await sendEmbedMessage(
+      message,
+      replaceMessage(welcomeMessage, message),
+      '#008F39'
+    )
   }
 }

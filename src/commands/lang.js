@@ -13,7 +13,11 @@ export default {
     const selectedLanguage = args[0]
 
     if (!validLanguages.includes(selectedLanguage)) {
-      return sendEmbedMessage(message, client.languages.__mf('langCommand.invalidLanguage'), '#FF0000')
+      return sendEmbedMessage(
+        message,
+        client.languages.__mf('langCommand.invalidLanguage'),
+        '#FF0000'
+      )
     }
 
     await client.prisma.server.upsert({
@@ -27,6 +31,12 @@ export default {
       en: 'English'
     }
 
-    return sendEmbedMessage(message, client.languages.__mf('langCommand.success', { language: languageNames[selectedLanguage] }), '#008F39')
+    return sendEmbedMessage(
+      message,
+      client.languages.__mf('langCommand.success', {
+        language: languageNames[selectedLanguage]
+      }),
+      '#008F39'
+    )
   }
 }

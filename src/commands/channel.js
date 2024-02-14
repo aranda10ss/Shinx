@@ -20,12 +20,22 @@ export default {
     })
 
     if (server?.channelId === channelId) {
-      return sendEmbedMessage(message, client.languages.__mf('channelCommand.alreadySet', { channel: server.channelId }), '#FF0000')
+      return sendEmbedMessage(
+        message,
+        client.languages.__mf('channelCommand.alreadySet', {
+          channel: server.channelId
+        }),
+        '#FF0000'
+      )
     }
 
     const channel = message.guild.channels.cache.get(channelId)
     if (!channel) {
-      return sendEmbedMessage(message, client.languages.__mf('channelCommand.invalidChannel'), '#FF0000')
+      return sendEmbedMessage(
+        message,
+        client.languages.__mf('channelCommand.invalidChannel'),
+        '#FF0000'
+      )
     }
 
     await client.prisma.server.upsert({
@@ -34,6 +44,10 @@ export default {
       create: { guildId: message.guild.id, channelId }
     })
 
-    return sendEmbedMessage(message, client.languages.__mf('channelCommand.success', { channel: channel.id }), '#008F39')
+    return sendEmbedMessage(
+      message,
+      client.languages.__mf('channelCommand.success', { channel: channel.id }),
+      '#008F39'
+    )
   }
 }
