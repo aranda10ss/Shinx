@@ -1,7 +1,7 @@
 {
+  "prompt": "Imagine that you are welcoming a new member to your Discord server. You want them to feel welcome and appreciated from the moment they join. Get creative to write a unique and friendly welcome message that includes the new member's name ([user]), the server name ([serverName]), and the number of current members ([members]). Make them feel at home It's your chance to show your hospitality and make their server experience memorable! Please make sure the welcome is 10 words or less and keep in mind that the user is already on the server NOT joining with the message",
   "error": "An unexpected error just occurred",
   "args": "You must provide the arguments.",
-  "messageCommand": "The welcome message has been configured correctly.",
   "langCommand": {
     "invalidLanguage": "Please choose a valid language: `es` for Spanish or `en` for English.",
     "success": "Se ha seleccionado el idioma {language}."

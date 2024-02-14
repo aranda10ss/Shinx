@@ -1,7 +1,7 @@
 {
+  "prompt": "Imagina que estás dando la bienvenida a un nuevo miembro en tu servidor de Discord. Quieres que se sientan bienvenidos y apreciados desde el momento en que se unen. Utiliza tu creatividad para escribir un mensaje de bienvenida único y amigable que incluya el nombre del nuevo miembro ([user]), el nombre del servidor ([serverName]) y el número de miembros actuales ([members]). Haz que se sientan como en casa ¡Es tu oportunidad de mostrar tu hospitalidad y hacer que su experiencia en el servidor sea memorable! Por favor, asegúrate de que la bienvenida sea de 10 palabras o menos y ten en cuenta que el usuario ya esta en el servidor NO que se unira con el mensaje",
   "error": "Acaba de ocurrir un error inesperado",
   "args": "Debes proporcionar los argumentos.",
-  "messageCommand": "El mensaje de bienvenida se ha configurado correctamente.",
   "langCommand": {
     "invalidLanguage": "Por favor elija un idioma válido: `es` para español o `en` para inglés.",
     "success": "The {language} language has been selected."
