@@ -1,7 +1,9 @@
 {
   "type": "module",
   "scripts": {
-    "dev": "nodemon index.js"
+    "dev": "nodemon index.js",
+    "format": "eslint . --ext .js --fix",
+    "prepare": "husky"
   },
   "keywords": [
     "bot",
@@ -17,11 +19,12 @@
   },
   "devDependencies": {
     "@prisma/client": "^5.9.1",
-    "eslint": "^8.0.1",
+    "eslint": "^8.56.0",
     "eslint-config-standard": "^17.1.0",
     "eslint-plugin-import": "^2.25.2",
     "eslint-plugin-n": "^15.0.0 || ^16.0.0 ",
     "eslint-plugin-promise": "^6.0.0",
+    "husky": "^9.0.11",
     "nodemon": "^3.0.3"
   }
 }
