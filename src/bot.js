@@ -1,29 +1,17 @@
-import { Client, GatewayIntentBits, Partials, AllowedMentionsTypes, Collection } from 'discord.js'
+import { Client, Collection } from 'discord.js'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
 import { PrismaClient } from '@prisma/client'
 import i18n from 'i18n'
 import { loadCommands } from './handler/commands.js'
 import { loadEvents } from './handler/events.js'
+import { clientOps } from './utils/config.js'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export class Bot extends Client {
   constructor () {
-    super({
-      intents: [
-        GatewayIntentBits.Guilds,
-        GatewayIntentBits.GuildMembers,
-        GatewayIntentBits.GuildMessages,
-        GatewayIntentBits.MessageContent,
-        GatewayIntentBits.DirectMessages
-      ],
-      partials: [Partials.Message, Partials.Channel],
-      allowedMentions: {
-        parse: [AllowedMentionsTypes.User, AllowedMentionsTypes.Role],
-        repliedUser: false
-      }
-    })
+    super(clientOps)
 
     this.prefix = process.env.PREFIX
     this.prisma = new PrismaClient()
