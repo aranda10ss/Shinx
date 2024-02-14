@@ -13,4 +13,5 @@ model server {
   welcomeMessage String?
   channelId      String?
   lang           String?
+  prompt         String?
 }
