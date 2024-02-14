@@ -1,19 +1,15 @@
 import { sendEmbedMessage } from '../utils/embeds.js'
-import replaceMessage from '../utils/replaceMessages.js'
 
 export default {
   name: 'message',
   aliases: ['msg'],
-  args: false,
+  args: true,
   permissions: {
     client: [],
     user: []
   },
   async execute ({ message, args, client }) {
-    const gpt = await client.chatgpt.sendMessage(
-      client.languages.__mf('prompt')
-    )
-    const welcomeMessage = gpt.text
+    const welcomeMessage = args.join(' ')
 
     await client.prisma.server.upsert({
       where: { guildId: message.guild.id },
@@ -21,10 +17,6 @@ export default {
       create: { guildId: message.guild.id, welcomeMessage }
     })
 
-    await sendEmbedMessage(
-      message,
-      replaceMessage(welcomeMessage, message),
-      '#008F39'
-    )
+    await sendEmbedMessage(message, client.languages.__mf('messageCommand'), '#008F39')
   }
 }
