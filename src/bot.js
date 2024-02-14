@@ -1,6 +1,7 @@
 import { Client, Collection } from 'discord.js'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
+import { ChatGPTAPI } from 'chatgpt'
 import { PrismaClient } from '@prisma/client'
 import i18n from 'i18n'
 import { loadCommands } from './handler/commands.js'
@@ -18,6 +19,7 @@ export class Bot extends Client {
     this.commands = new Collection()
     this.aliases = new Collection()
     this.languages = i18n
+    this.chatgpt = new ChatGPTAPI({ apiKey: process.env.CGPT_KEY })
     this.languages.configure({
       locales: ['en', 'es'],
       directory: join(__dirname, 'locales'),
