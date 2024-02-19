@@ -6,9 +6,9 @@ export default {
   args: true,
   permissions: {
     client: [],
-    user: []
+    user: [],
   },
-  async execute ({ message, args, client }) {
+  async execute({ message, args, client }) {
     let channelId = args[0]
 
     if (message.mentions.channels.size > 0) {
@@ -16,16 +16,16 @@ export default {
     }
 
     const server = await client.prisma.server.findUnique({
-      where: { guildId: message.guild.id }
+      where: { guildId: message.guild.id },
     })
 
     if (server?.channelId === channelId) {
       return sendEmbedMessage(
         message,
         client.languages.__mf('channelCommand.alreadySet', {
-          channel: server.channelId
+          channel: server.channelId,
         }),
-        '#FF0000'
+        '#FF0000',
       )
     }
 
@@ -34,20 +34,20 @@ export default {
       return sendEmbedMessage(
         message,
         client.languages.__mf('channelCommand.invalidChannel'),
-        '#FF0000'
+        '#FF0000',
       )
     }
 
     await client.prisma.server.upsert({
       where: { guildId: message.guild.id },
       update: { channelId },
-      create: { guildId: message.guild.id, channelId }
+      create: { guildId: message.guild.id, channelId },
     })
 
     return sendEmbedMessage(
       message,
       client.languages.__mf('channelCommand.success', { channel: channel.id }),
-      '#008F39'
+      '#008F39',
     )
-  }
+  },
 }

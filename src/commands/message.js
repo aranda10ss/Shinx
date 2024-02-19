@@ -6,17 +6,21 @@ export default {
   args: true,
   permissions: {
     client: [],
-    user: []
+    user: [],
   },
-  async execute ({ message, args, client }) {
+  async execute({ message, args, client }) {
     const welcomeMessage = args.join(' ')
 
     await client.prisma.server.upsert({
       where: { guildId: message.guild.id },
       update: { welcomeMessage },
-      create: { guildId: message.guild.id, welcomeMessage }
+      create: { guildId: message.guild.id, welcomeMessage },
     })
 
-    await sendEmbedMessage(message, client.languages.__mf('messageCommand'), '#008F39')
-  }
+    await sendEmbedMessage(
+      message,
+      client.languages.__mf('messageCommand'),
+      '#008F39',
+    )
+  },
 }

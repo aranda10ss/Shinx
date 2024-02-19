@@ -6,9 +6,9 @@ export default {
   args: true,
   permissions: {
     client: [],
-    user: []
+    user: [],
   },
-  async execute ({ message, args, client }) {
+  async execute({ message, args, client }) {
     const validLanguages = ['es', 'en']
     const selectedLanguage = args[0]
 
@@ -16,27 +16,27 @@ export default {
       return sendEmbedMessage(
         message,
         client.languages.__mf('langCommand.invalidLanguage'),
-        '#FF0000'
+        '#FF0000',
       )
     }
 
     await client.prisma.server.upsert({
       where: { guildId: message.guild.id },
       update: { lang: selectedLanguage },
-      create: { guildId: message.guild.id, lang: selectedLanguage }
+      create: { guildId: message.guild.id, lang: selectedLanguage },
     })
 
     const languageNames = {
       es: 'español',
-      en: 'English'
+      en: 'English',
     }
 
     return sendEmbedMessage(
       message,
       client.languages.__mf('langCommand.success', {
-        language: languageNames[selectedLanguage]
+        language: languageNames[selectedLanguage],
       }),
-      '#008F39'
+      '#008F39',
     )
-  }
+  },
 }

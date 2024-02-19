@@ -6,11 +6,11 @@ export const clientOps = {
     GatewayIntentBits.GuildMembers,
     GatewayIntentBits.GuildMessages,
     GatewayIntentBits.MessageContent,
-    GatewayIntentBits.DirectMessages
+    GatewayIntentBits.DirectMessages,
   ],
   partials: [Partials.Message, Partials.Channel],
   allowedMentions: {
     parse: [AllowedMentionsTypes.User, AllowedMentionsTypes.Role],
-    repliedUser: false
-  }
+    repliedUser: false,
+  },
 }

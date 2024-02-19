@@ -11,7 +11,7 @@ const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
 export class Bot extends Client {
-  constructor () {
+  constructor() {
     super(clientOps)
 
     this.prefix = process.env.PREFIX
@@ -34,12 +34,12 @@ export class Bot extends Client {
 
       mustacheConfig: {
         tags: ['{{', '}}'],
-        disable: false
-      }
+        disable: false,
+      },
     })
   }
 
-  async start (token) {
+  async start(token) {
     loadCommands(this, join(__dirname, 'commands'))
     loadEvents(this, join(__dirname, 'events'))
     await this.login(token)

@@ -6,7 +6,7 @@ export default async (client, member) => {
 
   const server = await client.prisma.server.findUnique({
     where: { guildId },
-    select: { welcomeMessage: true, channelId: true }
+    select: { welcomeMessage: true, channelId: true },
   })
 
   if (server?.welcomeMessage && server?.channelId) {

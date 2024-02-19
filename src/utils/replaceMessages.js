@@ -1,4 +1,4 @@
-function replaceMessage (text, message) {
+function replaceMessage(text, message) {
   const user = message.author ? message.author : message
 
   return text

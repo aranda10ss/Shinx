@@ -2,10 +2,10 @@ import { promises as fsPromises } from 'fs'
 import { join } from 'path'
 const { readdir, stat } = fsPromises
 
-export async function findJSFiles (dir) {
+export async function findJSFiles(dir) {
   const JSFiles = []
 
-  async function searchRecursively (currentDir) {
+  async function searchRecursively(currentDir) {
     try {
       const files = await readdir(currentDir)
 
