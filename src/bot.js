@@ -28,9 +28,7 @@ export class Bot extends Client {
       objectNotation: true,
       register: global,
 
-      missingKeyFn: function (locale, value) {
-        return value
-      },
+      missingKeyFn: (locale, value) => value,
 
       mustacheConfig: {
         tags: ['{{', '}}'],
