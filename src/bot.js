@@ -1,12 +1,12 @@
+import { PrismaClient } from '@prisma/client'
+import { ChatGPTAPI } from 'chatgpt'
 import { Client, Collection } from 'discord.js'
+import i18n from 'i18n'
 import { dirname, join } from 'path'
 import { fileURLToPath } from 'url'
-import { ChatGPTAPI } from 'chatgpt'
-import { PrismaClient } from '@prisma/client'
-import i18n from 'i18n'
-import { loadCommands } from './handler/commands.js'
-import { loadEvents } from './handler/events.js'
 import { clientOps } from './utils/config.js'
+import { loadCommands } from './utils/handler/commands.js'
+import { loadEvents } from './utils/handler/events.js'
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = dirname(__filename)
 
@@ -22,7 +22,7 @@ export class Bot extends Client {
     this.chatgpt = new ChatGPTAPI({ apiKey: process.env.CGPT_KEY })
     this.languages.configure({
       locales: ['en', 'es'],
-      directory: join(__dirname, 'locales'),
+      directory: join(__dirname, 'utils/languages'),
       defaultLocale: 'en',
       retryInDefaultLocale: true,
       objectNotation: true,
