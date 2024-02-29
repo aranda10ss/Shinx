@@ -1,4 +1,4 @@
-import { findJSFiles } from '../utils/findJsFiles.js'
+import { findJSFiles } from '../findJsFiles.js'
 
 export async function loadEvents(client, path) {
   const eventFiles = await findJSFiles(path)

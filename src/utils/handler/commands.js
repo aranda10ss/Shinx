@@ -1,4 +1,4 @@
-import { findJSFiles } from '../utils/findJsFiles.js'
+import { findJSFiles } from '../findJsFiles.js'
 
 export async function loadCommands(client, path) {
   const commandFiles = await findJSFiles(path)
