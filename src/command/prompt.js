@@ -1,5 +1,5 @@
-import { sendEmbedMessage } from '../utils/embeds.js'
-import replaceMessage from '../utils/replaceMessages.js'
+import { sendEmbedMessage } from '../util/message/embeds.js'
+import { replaceMessage } from '../util/message/replaceMessages.js'
 
 export default {
   name: 'prompt',

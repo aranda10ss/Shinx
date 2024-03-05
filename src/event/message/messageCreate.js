@@ -1,4 +1,4 @@
-import { sendEmbedMessage } from '../../utils/embeds.js'
+import { sendEmbedMessage } from '../../util/message/embeds.js'
 
 export default async (client, message) => {
   const args = message.content.slice(client.prefix.length).trim().split(/ +/)

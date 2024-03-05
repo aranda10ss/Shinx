@@ -1,4 +1,4 @@
-function replaceMessage(text, message) {
+export async function replaceMessage(text, message) {
   const user = message.author ? message.author : message
 
   return text
@@ -6,5 +6,3 @@ function replaceMessage(text, message) {
     .replace(/\[serverName\]/g, message.guild.name)
     .replace(/\[user\]/g, user)
 }
-
-export default replaceMessage

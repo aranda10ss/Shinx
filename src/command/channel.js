@@ -1,4 +1,4 @@
-import { sendEmbedMessage } from '../utils/embeds.js'
+import { sendEmbedMessage } from '../util/message/embeds.js'
 
 export default {
   name: 'channel',

@@ -1,4 +1,4 @@
-import replaceMessage from '../../utils/replaceMessages.js'
+import { replaceMessage } from '../../util/message/replaceMessages.js'
 
 export default async (client, member) => {
   const { guild } = member
