@@ -19,7 +19,7 @@
     "i18n": "^0.15.1"
   },
   "devDependencies": {
-    "@biomejs/biome": "1.5.3",
+    "@biomejs/biome": "1.6.0",
     "@prisma/client": "^5.9.1",
     "husky": "^9.0.11",
     "nodemon": "^3.0.3"
